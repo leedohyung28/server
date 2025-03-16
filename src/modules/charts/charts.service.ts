@@ -21,10 +21,10 @@ export class ChartsService {
         typeof body.limit === "string" ? parseInt(body.limit, 10) : 50;
 
       const offset =
-        typeof body.offset === "string" ? parseInt(body.limit, 10) : 0;
+        typeof body.offset === "string" ? parseInt(body.offset, 10) : 0;
 
       const url =
-        "https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF/tracks";
+        "https://api.spotify.com/v1/playlists/6ZkTORGQnmh5ZyVlonudfP/tracks";
       const response = await axios.get(url, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -56,14 +56,16 @@ export class ChartsService {
   public async getKorea50(uid: string, body: LimitDTO): Promise<ChartsDTO[]> {
     try {
       const accessToken = await this.spotifyService.getAccessToken();
+
       const limit =
         typeof body.limit === "string" ? parseInt(body.limit, 10) : 50;
 
       const offset =
-        typeof body.offset === "string" ? parseInt(body.limit, 10) : 0;
+        typeof body.offset === "string" ? parseInt(body.offset, 10) : 0;
 
       const url =
-        "https://api.spotify.com/v1/playlists/37i9dQZEVXbNxXF4SkHj9F/tracks";
+        "https://api.spotify.com/v1/playlists/4cRo44TavIHN54w46OqRVc/tracks";
+
       const response = await axios.get(url, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -80,15 +82,28 @@ export class ChartsService {
       );
       return charts;
     } catch (err) {
-      console.error("Failed to Get Korea 50 : ", err);
-      throw new HttpException(
-        {
-          status: HttpStatus.INTERNAL_SERVER_ERROR,
-          error: "Failed to get korea 50",
-          details: err.message,
-        },
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
+      // Axios 오류 객체 분해 할당
+      const { response, message } = err;
+
+      // Spotify API 응답 오류 상세 출력
+      if (response) {
+        console.error(`Spotify API Error [${response.status}]:`, {
+          url: response.config.url,
+          params: response.config.params,
+          data: response.data,
+        });
+      } else {
+        console.error("Network Error:", message);
+      }
+
+      // 클라이언트에 전달할 에러 메시지 구성
+      const errorResponse = {
+        status: HttpStatus.INTERNAL_SERVER_ERROR,
+        error: "Failed to get Korea 50",
+        details: response?.data ?? message,
+      };
+
+      throw new HttpException(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
@@ -102,10 +117,10 @@ export class ChartsService {
         typeof body.limit === "string" ? parseInt(body.limit, 10) : 50;
 
       const offset =
-        typeof body.offset === "string" ? parseInt(body.limit, 10) : 0;
+        typeof body.offset === "string" ? parseInt(body.offset, 10) : 0;
 
       const url =
-        "https://api.spotify.com/v1/playlists/37i9dQZEVXbNG2KDcFcKOF/tracks";
+        "https://api.spotify.com/v1/playlists/0EN2gQhhn0rCYUR5BY1UJy/tracks";
       const response = await axios.get(url, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -144,10 +159,10 @@ export class ChartsService {
         typeof body.limit === "string" ? parseInt(body.limit, 10) : 50;
 
       const offset =
-        typeof body.offset === "string" ? parseInt(body.limit, 10) : 0;
+        typeof body.offset === "string" ? parseInt(body.offset, 10) : 0;
 
       const url =
-        "https://api.spotify.com/v1/playlists/37i9dQZEVXbJZGli0rRP3r/tracks";
+        "https://api.spotify.com/v1/playlists/6kbzPEHj3uMPRFsR3v6xzE/tracks";
       const response = await axios.get(url, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -187,10 +202,10 @@ export class ChartsService {
         typeof body.limit === "string" ? parseInt(body.limit, 10) : 10;
 
       const offset =
-        typeof body.offset === "string" ? parseInt(body.limit, 10) : 0;
+        typeof body.offset === "string" ? parseInt(body.offset, 10) : 0;
 
       const url =
-        "https://api.spotify.com/v1/playlists/37i9dQZF1DXe5W6diBL5N4/tracks";
+        "https://api.spotify.com/v1/playlists/2Mq9TtE1Hv3c20UvuX3UwB/tracks";
       const response = await axios.get(url, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -227,10 +242,10 @@ export class ChartsService {
         typeof body.limit === "string" ? parseInt(body.limit, 10) : 10;
 
       const offset =
-        typeof body.offset === "string" ? parseInt(body.limit, 10) : 0;
+        typeof body.offset === "string" ? parseInt(body.offset, 10) : 0;
 
       const url =
-        "https://api.spotify.com/v1/playlists/37i9dQZF1DWZuIX5Q3yUjF/tracks";
+        "https://api.spotify.com/v1/playlists/46CBfjvYyxkDUIXUzCT3Lj/tracks";
       const response = await axios.get(url, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -270,10 +285,10 @@ export class ChartsService {
         typeof body.limit === "string" ? parseInt(body.limit, 10) : 10;
 
       const offset =
-        typeof body.offset === "string" ? parseInt(body.limit, 10) : 0;
+        typeof body.offset === "string" ? parseInt(body.offset, 10) : 0;
 
       const url =
-        "https://api.spotify.com/v1/playlists/37i9dQZF1DXa1rZf8gLhyz/tracks";
+        "https://api.spotify.com/v1/playlists/5rdgRwdMskt1IJKjNf0VWQ/tracks";
       const response = await axios.get(url, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -310,10 +325,10 @@ export class ChartsService {
         typeof body.limit === "string" ? parseInt(body.limit, 10) : 10;
 
       const offset =
-        typeof body.offset === "string" ? parseInt(body.limit, 10) : 0;
+        typeof body.offset === "string" ? parseInt(body.offset, 10) : 0;
 
       const url =
-        "https://api.spotify.com/v1/playlists/37i9dQZF1DX3sCx6B9EAOr/tracks";
+        "https://api.spotify.com/v1/playlists/20eYFSDMxKAtZlJH2yacQO/tracks";
       const response = await axios.get(url, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -353,10 +368,10 @@ export class ChartsService {
         typeof body.limit === "string" ? parseInt(body.limit, 10) : 10;
 
       const offset =
-        typeof body.offset === "string" ? parseInt(body.limit, 10) : 0;
+        typeof body.offset === "string" ? parseInt(body.offset, 10) : 0;
 
       const url =
-        "https://api.spotify.com/v1/playlists/2XVc9E8tEkpBz7z8wZbMul/tracks";
+        "https://api.spotify.com/v1/playlists/3090lTTISONgxLxHj7Ni6A/tracks";
       const response = await axios.get(url, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -393,10 +408,10 @@ export class ChartsService {
         typeof body.limit === "string" ? parseInt(body.limit, 10) : 10;
 
       const offset =
-        typeof body.offset === "string" ? parseInt(body.limit, 10) : 0;
+        typeof body.offset === "string" ? parseInt(body.offset, 10) : 0;
 
       const url =
-        "https://api.spotify.com/v1/playlists/37i9dQZF1DXcBWIGoYBM5M/tracks";
+        "https://api.spotify.com/v1/playlists/0suNxdO0GcLUSjo5whzPQ0/tracks";
       const response = await axios.get(url, {
         headers: {
           Authorization: `Bearer ${accessToken}`,

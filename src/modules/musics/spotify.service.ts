@@ -10,6 +10,11 @@ import {
 } from "./dto/create-result.dto";
 import { MusicsRepository } from "./musics.repository";
 
+export const SPOTIFY_SCOPES = [
+  "playlist-read-private",
+  "playlist-read-collaborative",
+].join(" ");
+
 @Injectable()
 export class SpotifyService {
   constructor(
@@ -34,6 +39,7 @@ export class SpotifyService {
           },
         },
       );
+
       return response.data.access_token;
     } catch (err) {
       console.error("Failed to Get Spotify Access Token : ", err);
@@ -73,6 +79,7 @@ export class SpotifyService {
   public async searchTrack(uid: string, body: string): Promise<TrackDTO[]> {
     try {
       const accessToken = await this.getAccessToken();
+      console.log("AT:", accessToken);
       const url = "https://api.spotify.com/v1/search";
 
       const response = await axios.get(url, {
